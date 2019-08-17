@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+
+message Message {
+    enum MessageType {
+        Handshake = 0;
+        SendTransaction = 1;
+        SendBlock = 2;
+        Bye = 3;
+    }
+    enum Status {
+        OK = 0;
+        NG = 1;
+    }
+
+    MessageType type = 1;
+    Status status = 2;
+    bytes payload = 3;
+}
