@@ -1,0 +1,12 @@
+[package]
+name = "proto"
+version = "0.0.1"
+authors = ["t10471"]
+edition = '2018'
+
+[dependencies]
+bytes = "0.4"
+protobuf = { version = "~2", features = ["with-bytes"] }
+
+[build-dependencies]
+protoc-rust = "2"
