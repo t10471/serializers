@@ -1,0 +1,8 @@
+[package]
+name = "fbs"
+version = "0.0.1"
+authors = ["t10471"]
+edition = '2018'
+
+[dependencies]
+flatbuffers = "0.6.0"
