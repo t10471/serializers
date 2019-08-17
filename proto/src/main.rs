@@ -16,7 +16,6 @@ fn main() {
 
     let mut m = p2p::Message::new();
     m.set_field_type(p2p::Message_MessageType::Handshake);
-    m.set_status(p2p::Message_Status::OK);
     let buf = Bytes::from(m.write_to_bytes().unwrap());
     println!("Serialize: {:?}", buf);
     let msg = parse_from_bytes::<p2p::Message>(&buf).unwrap();
