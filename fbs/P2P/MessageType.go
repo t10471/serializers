@@ -2,7 +2,7 @@
 
 package P2P
 
-type MessageType = int8
+type MessageType = int32
 const (
 	MessageTypeHandshake MessageType = 0
 	MessageTypeSendTransaction MessageType = 1

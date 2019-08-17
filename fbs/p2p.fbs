@@ -1,12 +1,12 @@
 namespace P2P;
 
-enum MessageType : byte { Handshake = 0, SendTransaction, SendBlock, Bye }
-enum Status : byte { OK = 0, NG }
+enum MessageType : int { Handshake = 0, SendTransaction, SendBlock, Bye }
+enum Status : int { OK = 0, NG }
 
 table Message {
     type:MessageType;
     status:Status;
-    payload:[byte];
+    payload:[ubyte];
 }
 
 root_type Message;

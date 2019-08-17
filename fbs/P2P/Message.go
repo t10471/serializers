@@ -29,32 +29,32 @@ func (rcv *Message) Table() flatbuffers.Table {
 func (rcv *Message) Type() MessageType {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
-		return rcv._tab.GetInt8(o + rcv._tab.Pos)
+		return rcv._tab.GetInt32(o + rcv._tab.Pos)
 	}
 	return 0
 }
 
 func (rcv *Message) MutateType(n MessageType) bool {
-	return rcv._tab.MutateInt8Slot(4, n)
+	return rcv._tab.MutateInt32Slot(4, n)
 }
 
 func (rcv *Message) Status() Status {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
-		return rcv._tab.GetInt8(o + rcv._tab.Pos)
+		return rcv._tab.GetInt32(o + rcv._tab.Pos)
 	}
 	return 0
 }
 
 func (rcv *Message) MutateStatus(n Status) bool {
-	return rcv._tab.MutateInt8Slot(6, n)
+	return rcv._tab.MutateInt32Slot(6, n)
 }
 
-func (rcv *Message) Payload(j int) int8 {
+func (rcv *Message) Payload(j int) byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		a := rcv._tab.Vector(o)
-		return rcv._tab.GetInt8(a + flatbuffers.UOffsetT(j*1))
+		return rcv._tab.GetByte(a + flatbuffers.UOffsetT(j*1))
 	}
 	return 0
 }
@@ -67,11 +67,19 @@ func (rcv *Message) PayloadLength() int {
 	return 0
 }
 
-func (rcv *Message) MutatePayload(j int, n int8) bool {
+func (rcv *Message) PayloadBytes() []byte {
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
+	if o != 0 {
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
+	}
+	return nil
+}
+
+func (rcv *Message) MutatePayload(j int, n byte) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		a := rcv._tab.Vector(o)
-		return rcv._tab.MutateInt8(a+flatbuffers.UOffsetT(j*1), n)
+		return rcv._tab.MutateByte(a+flatbuffers.UOffsetT(j*1), n)
 	}
 	return false
 }
@@ -79,11 +87,11 @@ func (rcv *Message) MutatePayload(j int, n int8) bool {
 func MessageStart(builder *flatbuffers.Builder) {
 	builder.StartObject(3)
 }
-func MessageAddType(builder *flatbuffers.Builder, type_ int8) {
-	builder.PrependInt8Slot(0, type_, 0)
+func MessageAddType(builder *flatbuffers.Builder, type_ int32) {
+	builder.PrependInt32Slot(0, type_, 0)
 }
-func MessageAddStatus(builder *flatbuffers.Builder, status int8) {
-	builder.PrependInt8Slot(1, status, 0)
+func MessageAddStatus(builder *flatbuffers.Builder, status int32) {
+	builder.PrependInt32Slot(1, status, 0)
 }
 func MessageAddPayload(builder *flatbuffers.Builder, payload flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(payload), 0)

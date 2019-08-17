@@ -2,7 +2,7 @@
 
 package P2P
 
-type Status = int8
+type Status = int32
 const (
 	StatusOK Status = 0
 	StatusNG Status = 1
