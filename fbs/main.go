@@ -12,9 +12,9 @@ func main() {
 	P2P.MessageStart(builder)
 	m := P2P.MessageEnd(builder)
 	builder.Finish(m)
-	fmt.Printf("Serialize: %v\n", builder.Bytes)
-
-	msg := P2P.GetRootAsMessage(builder.Bytes, builder.Head())
+	b := builder.FinishedBytes()
+	fmt.Printf("Serialize: %v\n", b)
+	msg := P2P.GetRootAsMessage(b, 0)
 	fmt.Printf("Deserialize: %v\n", msg)
 	fmt.Printf("Type: %v\n", P2P.EnumNamesMessageType[msg.Type()])
 
@@ -23,8 +23,9 @@ func main() {
 	P2P.MessageAddType(builder, P2P.MessageTypeHandshake)
 	m = P2P.MessageEnd(builder)
 	builder.Finish(m)
-
-	msg = P2P.GetRootAsMessage(builder.Bytes, builder.Head())
+	b = builder.FinishedBytes()
+	fmt.Printf("Serialize: %v\n", b)
+	msg = P2P.GetRootAsMessage(b, 0)
 	fmt.Printf("Deserialize: %v\n", msg)
 	fmt.Printf("Type: %v\n", P2P.EnumNamesMessageType[msg.Type()])
 
@@ -32,11 +33,11 @@ func main() {
 	P2P.MessageStart(builder)
 	P2P.MessageAddType(builder, P2P.MessageTypeHandshake)
 	P2P.MessageAddStatus(builder, P2P.StatusNG)
-	//P2P.MessageAddType(builder, P2P.StatusNG)
 	m = P2P.MessageEnd(builder)
 	builder.Finish(m)
-
-	msg = P2P.GetRootAsMessage(builder.Bytes, builder.Head())
+	b = builder.FinishedBytes()
+	fmt.Printf("Serialize: %v\n", b)
+	msg = P2P.GetRootAsMessage(b, 0)
 	fmt.Printf("Deserialize: %v\n", msg)
 	fmt.Printf("Type: %v\n", P2P.EnumNamesMessageType[msg.Type()])
 
@@ -45,8 +46,9 @@ func main() {
 	P2P.MessageAddType(builder, P2P.MessageTypeBye)
 	m = P2P.MessageEnd(builder)
 	builder.Finish(m)
-
-	msg = P2P.GetRootAsMessage(builder.Bytes, builder.Head())
+	b = builder.FinishedBytes()
+	fmt.Printf("Serialize: %v\n", b)
+	msg = P2P.GetRootAsMessage(b, 0)
 	fmt.Printf("Deserialize: %v\n", msg)
 	fmt.Printf("Type: %v\n", P2P.EnumNamesMessageType[msg.Type()])
 }
